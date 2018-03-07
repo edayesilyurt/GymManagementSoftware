@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Paketler>
+  <Paket>
+    <PaketIsmi>AYLIK ÜYELİK</PaketIsmi>
+    <UyelikSuresi>1</UyelikSuresi>
+    <AylikFiyat>109.99</AylikFiyat>
+  </Paket>
+  <Paket>
+    <PaketIsmi>3 AYLIK ÜYELİK</PaketIsmi>
+    <UyelikSuresi>3</UyelikSuresi>
+    <AylikFiyat>99.99</AylikFiyat>
+  </Paket>
+  <Paket>
+    <PaketIsmi>GOLD PAKET</PaketIsmi>
+    <UyelikSuresi>9</UyelikSuresi>
+    <AylikFiyat>85</AylikFiyat>
+  </Paket>
+  <Paket>
+    <PaketIsmi>YILLIK ÜYELİK</PaketIsmi>
+    <UyelikSuresi>12</UyelikSuresi>
+    <AylikFiyat>79.99</AylikFiyat>
+  </Paket>
+</Paketler>

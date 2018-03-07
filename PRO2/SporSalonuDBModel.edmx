@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SporSalonuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EGITMEN">
+          <Key>
+            <PropertyRef Name="EgitmenID" />
+          </Key>
+          <Property Name="EgitmenID" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel_no" Type="char" MaxLength="11" />
+          <Property Name="Maas" Type="real" />
+        </EntityType>
+        <EntityType Name="ODEME">
+          <Key>
+            <PropertyRef Name="OdeyenID" />
+            <PropertyRef Name="OdemeTarihi" />
+          </Key>
+          <Property Name="OdeyenID" Type="int" Nullable="false" />
+          <Property Name="OdemeTarihi" Type="date" Nullable="false" />
+          <Property Name="OdenenMiktar" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="KullanıcıID" />
+          </Key>
+          <Property Name="KullanıcıID" Type="int" Nullable="false" />
+          <Property Name="KullanıcıRolü" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UYE">
+          <Key>
+            <PropertyRef Name="UyeID" />
+          </Key>
+          <Property Name="UyeID" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cinsiyet" Type="char" MaxLength="1" />
+          <Property Name="Dogum_tarihi" Type="date" />
+          <Property Name="Tel_no" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Kayit_tarihi" Type="date" Nullable="false" />
+          <Property Name="Paket_secimi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Boy" Type="int" />
+          <Property Name="Kilo" Type="real" />
+          <Property Name="GuncelKilo" Type="real" />
+          <Property Name="HedefKilo" Type="real" />
+        </EntityType>
+        <EntityType Name="VUCUTOLC">
+          <Key>
+            <PropertyRef Name="UyeID" />
+          </Key>
+          <Property Name="UyeID" Type="int" Nullable="false" />
+          <Property Name="BasBiceps" Type="float" />
+          <Property Name="GunBiceps" Type="float" />
+          <Property Name="BasGogus" Type="float" />
+          <Property Name="GunGogus" Type="float" />
+          <Property Name="BasBel" Type="float" />
+          <Property Name="GunBel" Type="float" />
+          <Property Name="BasOmuz" Type="float" />
+          <Property Name="GunOmuz" Type="float" />
+          <Property Name="BasBacak" Type="float" />
+          <Property Name="GunBacak" Type="float" />
+        </EntityType>
+        <Association Name="odeme_fk">
+          <End Role="UYE" Type="Self.UYE" Multiplicity="1" />
+          <End Role="ODEME" Type="Self.ODEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UYE">
+              <PropertyRef Name="UyeID" />
+            </Principal>
+            <Dependent Role="ODEME">
+              <PropertyRef Name="OdeyenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SporSalonuModelStoreContainer">
+          <EntitySet Name="EGITMEN" EntityType="Self.EGITMEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ODEME" EntityType="Self.ODEME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UYE" EntityType="Self.UYE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VUCUTOLC" EntityType="Self.VUCUTOLC" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="odeme_fk" Association="Self.odeme_fk">
+            <End Role="UYE" EntitySet="UYE" />
+            <End Role="ODEME" EntitySet="ODEME" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SporSalonuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EGITMEN">
+          <Key>
+            <PropertyRef Name="EgitmenID" />
+          </Key>
+          <Property Name="EgitmenID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel_no" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Maas" Type="Single" />
+        </EntityType>
+        <EntityType Name="ODEME">
+          <Key>
+            <PropertyRef Name="OdeyenID" />
+            <PropertyRef Name="OdemeTarihi" />
+          </Key>
+          <Property Name="OdeyenID" Type="Int32" Nullable="false" />
+          <Property Name="OdemeTarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OdenenMiktar" Type="Single" Nullable="false" />
+          <NavigationProperty Name="UYE" Relationship="Self.odeme_fk" FromRole="ODEME" ToRole="UYE" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="KullanıcıID" />
+          </Key>
+          <Property Name="KullanıcıID" Type="Int32" Nullable="false" />
+          <Property Name="KullanıcıRolü" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UYE">
+          <Key>
+            <PropertyRef Name="UyeID" />
+          </Key>
+          <Property Name="UyeID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Dogum_tarihi" Type="DateTime" Precision="0" />
+          <Property Name="Tel_no" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Kayit_tarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Paket_secimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Boy" Type="Int32" />
+          <Property Name="Kilo" Type="Single" />
+          <Property Name="GuncelKilo" Type="Single" />
+          <Property Name="HedefKilo" Type="Single" />
+          <NavigationProperty Name="ODEME" Relationship="Self.odeme_fk" FromRole="UYE" ToRole="ODEME" />
+        </EntityType>
+        <EntityType Name="VUCUTOLC">
+          <Key>
+            <PropertyRef Name="UyeID" />
+          </Key>
+          <Property Name="UyeID" Type="Int32" Nullable="false" />
+          <Property Name="BasBiceps" Type="Double" />
+          <Property Name="GunBiceps" Type="Double" />
+          <Property Name="BasGogus" Type="Double" />
+          <Property Name="GunGogus" Type="Double" />
+          <Property Name="BasBel" Type="Double" />
+          <Property Name="GunBel" Type="Double" />
+          <Property Name="BasOmuz" Type="Double" />
+          <Property Name="GunOmuz" Type="Double" />
+          <Property Name="BasBacak" Type="Double" />
+          <Property Name="GunBacak" Type="Double" />
+        </EntityType>
+        <Association Name="odeme_fk">
+          <End Role="UYE" Type="Self.UYE" Multiplicity="1" />
+          <End Role="ODEME" Type="Self.ODEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UYE">
+              <PropertyRef Name="UyeID" />
+            </Principal>
+            <Dependent Role="ODEME">
+              <PropertyRef Name="OdeyenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SporSalonuContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EGITMEN" EntityType="Self.EGITMEN" />
+          <EntitySet Name="ODEME" EntityType="Self.ODEME" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UYE" EntityType="Self.UYE" />
+          <EntitySet Name="VUCUTOLC" EntityType="Self.VUCUTOLC" />
+          <AssociationSet Name="odeme_fk" Association="Self.odeme_fk">
+            <End Role="UYE" EntitySet="UYE" />
+            <End Role="ODEME" EntitySet="ODEME" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SporSalonuModelStoreContainer" CdmEntityContainer="SporSalonuContext">
+          <EntitySetMapping Name="EGITMEN">
+            <EntityTypeMapping TypeName="SporSalonuModel.EGITMEN">
+              <MappingFragment StoreEntitySet="EGITMEN">
+                <ScalarProperty Name="EgitmenID" ColumnName="EgitmenID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Tel_no" ColumnName="Tel_no" />
+                <ScalarProperty Name="Maas" ColumnName="Maas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ODEME">
+            <EntityTypeMapping TypeName="SporSalonuModel.ODEME">
+              <MappingFragment StoreEntitySet="ODEME">
+                <ScalarProperty Name="OdeyenID" ColumnName="OdeyenID" />
+                <ScalarProperty Name="OdemeTarihi" ColumnName="OdemeTarihi" />
+                <ScalarProperty Name="OdenenMiktar" ColumnName="OdenenMiktar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROL">
+            <EntityTypeMapping TypeName="SporSalonuModel.ROL">
+              <MappingFragment StoreEntitySet="ROL">
+                <ScalarProperty Name="KullanıcıID" ColumnName="KullanıcıID" />
+                <ScalarProperty Name="KullanıcıRolü" ColumnName="KullanıcıRolü" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SporSalonuModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UYE">
+            <EntityTypeMapping TypeName="SporSalonuModel.UYE">
+              <MappingFragment StoreEntitySet="UYE">
+                <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="Dogum_tarihi" ColumnName="Dogum_tarihi" />
+                <ScalarProperty Name="Tel_no" ColumnName="Tel_no" />
+                <ScalarProperty Name="Kayit_tarihi" ColumnName="Kayit_tarihi" />
+                <ScalarProperty Name="Paket_secimi" ColumnName="Paket_secimi" />
+                <ScalarProperty Name="Boy" ColumnName="Boy" />
+                <ScalarProperty Name="Kilo" ColumnName="Kilo" />
+                <ScalarProperty Name="GuncelKilo" ColumnName="GuncelKilo" />
+                <ScalarProperty Name="HedefKilo" ColumnName="HedefKilo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VUCUTOLC">
+            <EntityTypeMapping TypeName="SporSalonuModel.VUCUTOLC">
+              <MappingFragment StoreEntitySet="VUCUTOLC">
+                <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+                <ScalarProperty Name="BasBiceps" ColumnName="BasBiceps" />
+                <ScalarProperty Name="GunBiceps" ColumnName="GunBiceps" />
+                <ScalarProperty Name="BasGogus" ColumnName="BasGogus" />
+                <ScalarProperty Name="GunGogus" ColumnName="GunGogus" />
+                <ScalarProperty Name="BasBel" ColumnName="BasBel" />
+                <ScalarProperty Name="GunBel" ColumnName="GunBel" />
+                <ScalarProperty Name="BasOmuz" ColumnName="BasOmuz" />
+                <ScalarProperty Name="GunOmuz" ColumnName="GunOmuz" />
+                <ScalarProperty Name="BasBacak" ColumnName="BasBacak" />
+                <ScalarProperty Name="GunBacak" ColumnName="GunBacak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
