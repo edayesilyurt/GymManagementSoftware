@@ -1,1 +1,3 @@
 # GymMembershipSoftware
+
+This is a gym management software for managers and fitness instructors. It uses MS SQL as a database for keep track members, fitness instructors and their account details, measurements, progress and payments. If we look from viewpoint of personal trainers, they work with people of all ages and abilities to make them more fit and easily follow their progress and update members body measurements etc. In addition for this, it is a simple way to keep payments. Managers can list payments on a monthly basis, and follow incoming payments with member names and communication details.
